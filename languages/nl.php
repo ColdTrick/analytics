@@ -20,4 +20,4 @@
 	);
 	
 	add_translation("nl", $dutch);
-?>
+	

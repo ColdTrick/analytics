@@ -1,47 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin_manifest>
-	<field key="author" value="ColdTrick IT Solutions" />
-	<field key="version" value="1.3" />
-	<field key="description" value="Adds Google Analytics tracking code to all Elgg pages." />
-	<field key="website" value="http://www.coldtrick.com/" />
-	<field key="copyright" value="(C) ColdTrick IT Solutions 2009" />
-	<field key="licence" value="GNU Public License version 2" />
-	<field key="elgg-version" value="2009030101" />
+<plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
+	<name>Google Analytics</name>
+	<author>ColdTrick IT Solutions</author>
+	<version>1.3</version>
+	<blurb>Google Aanlytics tracking</blurb>
+	<description>Adds Google Analytics tracking code to all Elgg pages.</description>
+	<website>http://www.coldtrick.com/</website>
+	<copyright>(C) ColdTrick IT Solutions 2009 - 2011</copyright>
+	<license>GNU Public License version 2</license>
+	
+	<requires>
+		<type>elgg_version</type>
+		<version>2011061200</version>
+	</requires>
+	
+ 	<category>ColdTrick</category>
 </plugin_manifest>
-<!--
-
-======================
-Credits
-======================
-Release 1.3:
-Funding
-- Oxfam Novib for Doenersnet (www.doenersnet.nl)
-
-Testing and feedback
-- Jules Stuifbergen, Web Analytics Expert (http://forwardslash.nl/elgg)
-
-
-======================
-Version history
-======================
-1.3 (2010-10-28):
-	- added: plugin hook to filter tracking of actions => trigger_plugin_hook("track_action", "analytics", array("action" => $action))
-	- added: plugin hook to filter tracking of events => trigger_plugin_hook("track_event", "analytics", array("category" => $category, "action" => $action, "label" => $label))
-	- fixed: results of ajax calls not sent to Google Analytics
-	
-1.2 (2010-10-26):
-	- added: option to flag adminitrators
-	
-1.1.1 (2010-10-25):
-	- fixed: timing issue on AJAX calls
-	
-1.1 (2010-10-05):
-	- added: option to track Elgg actions as pageview
-	- added: option to track Elgg events as event
-	- changed: using new Google Asynchronous tracking code
-	- changed: plugin layout 
-
-1.0:
-	- initial version
-
--->

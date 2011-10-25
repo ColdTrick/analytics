@@ -6,8 +6,8 @@
 	 */
 
 
-	$trackActions = get_plugin_setting("trackActions", "analytics");
-	$trackEvents = get_plugin_setting("trackEvents", "analytics");
+	$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
+	$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
 
 	if($trackActions == "yes") { 
 		if(!empty($_SESSION["analytics"]["actions"])){
@@ -40,5 +40,3 @@
 			$_SESSION["analytics"]["events"] = array();
 		}
 	}
-
-?>

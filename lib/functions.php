@@ -3,7 +3,7 @@
 	function analytics_track_action($action){
 		$action_result = true;
 		
-		if(trigger_plugin_hook("track_action", "analytics", array("action" => $action), true)){
+		if(elgg_trigger_plugin_hook("track_action", "analytics", array("action" => $action), true)){
 			if(count_messages("error") > 0){
 				$action_result = false;
 			}
@@ -24,7 +24,7 @@
 
 	function analytics_track_event($category, $action, $label = ""){
 		
-		if(trigger_plugin_hook("track_event", "analytics", array("category" => $category, "action" => $action, "label" => $label), true)){
+		if(elgg_trigger_plugin_hook("track_event", "analytics", array("category" => $category, "action" => $action, "label" => $label), true)){
 			if(!empty($category) && !empty($action)){
 				if(!array_key_exists("analytics", $_SESSION)){
 					$_SESSION["analytics"] = array();
@@ -49,6 +49,4 @@
 		
 		return true;
 	}
-
-
-?>
+	

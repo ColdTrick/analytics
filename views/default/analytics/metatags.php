@@ -1,10 +1,10 @@
 <?php 
 
-	$trackID = get_plugin_setting('analyticsSiteID', 'analytics');
-	$domain = get_plugin_setting('analyticsDomain', 'analytics');
-	$trackActions = get_plugin_setting("trackActions", "analytics");
-	$trackEvents = get_plugin_setting("trackEvents", "analytics");
-	$flagAdmins = get_plugin_setting("flagAdmins", "analytics");
+	$trackID = elgg_get_plugin_setting('analyticsSiteID', 'analytics');
+	$domain = elgg_get_plugin_setting('analyticsDomain', 'analytics');
+	$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
+	$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
+	$flagAdmins = elgg_get_plugin_setting("flagAdmins", "analytics");
 	
 	if(!empty($trackID)){
 ?>
@@ -15,7 +15,7 @@
 	<?php if(!empty($domain)) { ?>
 	_gaq.push(['_setDomainName', '<?php echo $domain; ?>']);
 	<?php } ?>
-	<?php if($flagAdmins == "yes" && isadminloggedin()){ ?>
+	<?php if(elgg_is_admin_logged_in() && $flagAdmins == "yes"){ ?>
 	_gaq.push(['_setCustomVar', 1, 'role', 'admin', 1]);
 	<?php } ?>
 	_gaq.push(['_trackPageview']);
