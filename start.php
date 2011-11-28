@@ -26,12 +26,16 @@
 	}
 	
 	function analytics_page_handler($page){
+		$result = false;
 		
 		switch($page[0]){
 			case "ajax_success":
+				$result = true;
 				include(dirname(__FILE__) . "/pages/ajax_success.php");
 				break;
 		}
+		
+		return $result;
 	}
 	
 	function analytics_action_plugin_hook($hook, $type, $returnvalue, $params){
