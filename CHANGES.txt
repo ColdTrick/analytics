@@ -1,4 +1,8 @@
 = Version history =
+x.x:
+
+- changed: handling of footer view
+
 2.0 (2011-11-28):
 
 - fixed: page_handler issue with Elgg 1.8.1

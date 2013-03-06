@@ -11,15 +11,11 @@
 	require_once(dirname(__FILE__) . "/lib/functions.php");
 
 	function analytics_init()	{
-		$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
-		$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
-	
 		// load Google Analytics JS
 		elgg_extend_view("page/elements/head", "analytics/metatags", 999);
 		
-		if($trackActions == "yes" || $trackEvents == "yes"){
-			elgg_extend_view("footer/analytics", "analytics/footer", 999);
-		}
+		// extend the page footer
+		elgg_extend_view("footer/analytics", "analytics/footer", 999);
 		
 		// register page handler
 		elgg_register_page_handler("analytics", "analytics_page_handler");
