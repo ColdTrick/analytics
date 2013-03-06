@@ -1,9 +1,13 @@
 <?php 
 
-	$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
-	$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
-
-	if ($trackActions == "yes" || $trackEvents == "yes") {
+	// do we have the plugin configured correctly
+	if (elgg_get_plugin_setting("analyticsSiteID", "analytics")) {
+	
+		$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
+		$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
+	
+		// do we track actions/events
+		if ($trackActions == "yes" || $trackEvents == "yes") {
 ?>
 <script type="text/javascript" id="analytics_ajax_result">
 	$('#analytics_ajax_result').ajaxSuccess(function(event, XMLHttpRequest, ajaxOptions){
@@ -23,4 +27,5 @@
 
 </script>
 <?php 
+		}
 	}
