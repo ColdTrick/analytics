@@ -4,8 +4,6 @@
 	 * jQuery call to echo tracked events and actions
 	 * 
 	 */
-
-
 	$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
 	$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
 
