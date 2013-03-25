@@ -1,7 +1,8 @@
 = Version history =
 x.x:
 
-- fixed: possible javascript error in footer, when ther is no tracking ID
+- added: Piwik support
+- fixed: possible javascript error in footer, when there is no tracking ID
 - changed: handling of footer view
 - changed: moved some functions around
 
