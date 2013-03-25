@@ -1,7 +1,15 @@
-Google Analytics
+Analytics
 ================
-As of release 1.3 it is possible to track Actions and Events of the Elgg system.
+Track the usage of your site by Google Analytics and/or Piwik
+
+**Release 1.3**
+
+It is possible to track Actions and Events of the Elgg system.
 Tracking can be enabled in the plugin settings
+
+**Release 2.1**
+
+The plugin name changed to Analytics, as we now support both [Google Analytics][google] and [Piwik][piwik] analytics tracking.
 
 Contents
 --------
@@ -17,10 +25,10 @@ Contents
 ### Release 1.3
 
 Funding
-- Oxfam Novib for Doenersnet (www.doenersnet.nl)
+- Oxfam Novib for [Doenersnet][doenersnet]
 
 Testing and feedback
-- Jules Stuifbergen, Web Analytics Expert (http://forwardslash.nl/elgg)
+- Jules Stuifbergen, Web Analytics Expert [http://forwardslash.nl/elgg][jules]
 
 2. Tracking of Actions
 ----------------------
@@ -50,3 +58,8 @@ If you return false on this hook the action will not be tracked.
 It is possible to set some extra tracking data in case of an adminitrator. This will allow you to filter the administrators out of your site usage or do other stuff.
 
 When enabled an administrator will be flagged with a customVar 'role' which will be set to 'admin' = 1
+
+[google]: http://www.google.com/analytics/
+[piwik]: http://piwik.org/
+[doenersnet]: http://www.doenersnet.nl/
+[jules]: http://forwardslash.nl/elgg
