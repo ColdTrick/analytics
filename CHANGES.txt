@@ -1,10 +1,11 @@
 = Version history =
-x.x:
+2.1 (2013-04-05):
 
 - added: Piwik support
 - fixed: possible javascript error in footer, when there is no tracking ID
 - changed: handling of footer view
 - changed: moved some functions around
+- changed: README.txt to README.md for GitHub
 
 2.0 (2011-11-28):
 
