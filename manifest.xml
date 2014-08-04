@@ -5,9 +5,10 @@
 	<version>2.1</version>
 	<author>ColdTrick IT Solutions</author>
 	<website>http://www.coldtrick.com/</website>
+	<id>analytics</id>
 	<repository>https://github.com/ColdTrick/analytics</repository>
 	<bugtracker>https://github.com/ColdTrick/analytics/issues</bugtracker>
-	<copyright>(C) ColdTrick IT Solutions 2010 - 2013</copyright>
+	<copyright>(C) ColdTrick IT Solutions 2010 - 2014</copyright>
 	<license>GNU General Public License version 2</license>
 	
 	<requires>
