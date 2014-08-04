@@ -18,6 +18,7 @@ $english = array(
 	'analytics:settings:track_events' => "Track Elgg events?",
 	'analytics:settings:track_events:warning' => "<b>WARNING:</b> this will create a lot of calls to Google Analytics",
 	'analytics:settings:flag_administrators' => "Flag administrators?",
+	'analytics:settings:anonymize_ip' => "Anonymize IP address",
 	
 	'analytics:settings:piwik' => "Piwik settings",
 	'analytics:settings:piwik:description' => "You can use Piwik to track the usage of your site. To enable Piwki tracking please enter the URL to the Piwik installation and a Site ID. To disable Piwik tracking remove the Piwik URL and/or the Site ID.",

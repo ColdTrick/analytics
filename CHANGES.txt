@@ -1,5 +1,10 @@
 = Version history =
 
+x.x:
+
+- applied coding standards
+- added: option for Google Analytics to anonymize lP address
+
 2.1 (2013-04-05):
 
 - added: Piwik support

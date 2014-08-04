@@ -61,6 +61,11 @@ $google .= elgg_echo("analytics:settings:flag_administrators");
 $google .= elgg_view("input/dropdown", array("name" => "params[flagAdmins]", "options_values" => $noyes_options, "value" => $plugin->flagAdmins, "class" => "mls"));
 $google .= "</div>";
 
+$google .= "<div class='mbs'>";
+$google .= elgg_echo("analytics:settings:anonymize_ip");
+$google .= elgg_view("input/dropdown", array("name" => "params[anonymizeIp]", "options_values" => $noyes_options, "value" => $plugin->anonymizeIp, "class" => "mls"));
+$google .= "</div>";
+
 echo elgg_view_module("inline", elgg_echo("analytics:settings:google"), $google);
 
 // Piwik

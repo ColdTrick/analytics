@@ -8,6 +8,8 @@ if (!empty($trackID)) {
 	$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
 	$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
 	$flagAdmins = elgg_get_plugin_setting("flagAdmins", "analytics");
+	$anonymizelp = elgg_get_plugin_setting("anonymizelp", "analytics");
+	
 ?>
 <!-- Google Analytics -->
 <script type="text/javascript">
@@ -19,6 +21,9 @@ if (!empty($trackID)) {
 	<?php } ?>
 	<?php if (elgg_is_admin_logged_in() && $flagAdmins == "yes") { ?>
 	_gaq.push(['_setCustomVar', 1, 'role', 'admin', 1]);
+	<?php } ?>
+	<?php if ($anonymizelp == "yes") { ?>
+	_gaq.push (['_gat._anonymizeIp']);
 	<?php } ?>
 	_gaq.push(['_trackPageview']);
 	
