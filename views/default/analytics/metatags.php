@@ -11,17 +11,17 @@ if (!empty($trackID)) {
 ?>
 <!-- Google Analytics -->
 <script type="text/javascript">
-
+	
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', '<?php echo $trackID; ?>']);
-	<?php if(!empty($domain)) { ?>
+	<?php if (!empty($domain)) { ?>
 	_gaq.push(['_setDomainName', '<?php echo $domain; ?>']);
 	<?php } ?>
 	<?php if (elgg_is_admin_logged_in() && $flagAdmins == "yes") { ?>
 	_gaq.push(['_setCustomVar', 1, 'role', 'admin', 1]);
 	<?php } ?>
 	_gaq.push(['_trackPageview']);
-
+	
 	<?php
 	if ($trackActions == "yes") {
 		if (!empty($_SESSION["analytics"]["actions"])) {

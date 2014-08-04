@@ -41,15 +41,15 @@ function analytics_track_action($action) {
  *
  * @return bool
  */
-function analytics_track_event($category, $action, $label = ""){
+function analytics_track_event($category, $action, $label = "") {
 	
-	if(elgg_trigger_plugin_hook("track_event", "analytics", array("category" => $category, "action" => $action, "label" => $label), true)){
-		if(!empty($category) && !empty($action)){
-			if(!array_key_exists("analytics", $_SESSION)){
+	if (elgg_trigger_plugin_hook("track_event", "analytics", array("category" => $category, "action" => $action, "label" => $label), true)) {
+		if (!empty($category) && !empty($action)) {
+			if (!array_key_exists("analytics", $_SESSION)) {
 				$_SESSION["analytics"] = array();
 			}
 			
-			if(!array_key_exists("events", $_SESSION["analytics"])){
+			if (!array_key_exists("events", $_SESSION["analytics"])) {
 				$_SESSION["analytics"]["events"] = array();
 			}
 			
@@ -58,7 +58,7 @@ function analytics_track_event($category, $action, $label = ""){
 				"action" => $action
 			);
 			
-			if(!empty($label)){
+			if (!empty($label)) {
 				$t_event["label"] = $label;
 			}
 			
