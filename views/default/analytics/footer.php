@@ -10,10 +10,12 @@ if (elgg_get_plugin_setting("analyticsSiteID", "analytics")) {
 	if ($trackActions == "yes" || $trackEvents == "yes") {
 ?>
 <script type="text/javascript" id="analytics_ajax_result">
-	$('#analytics_ajax_result').ajaxSuccess(function(event, XMLHttpRequest, ajaxOptions) {
-		if (ajaxOptions.url != "<?php echo elgg_get_site_url(); ?>analytics/ajax_success") {
-			
-			$.get("<?php echo elgg_get_site_url(); ?>analytics/ajax_success", function(data) {
+
+	$(document).ajaxSuccess(function(event, XMLHttpRequest, ajaxOptions) {
+		
+		elgg.get("analytics/ajax_success", {
+			global: false,
+			success: function(data) {
 				if (data) {
 					var temp = document.createElement("script");
 					temp.setAttribute("type", "text/javascript");
@@ -21,8 +23,8 @@ if (elgg_get_plugin_setting("analyticsSiteID", "analytics")) {
 					
 					$('#analytics_ajax_result').after(temp);
 				}
-			});
-		}
+			}
+		});
 	});
 </script>
 <?php

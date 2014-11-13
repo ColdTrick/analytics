@@ -4,7 +4,6 @@
 *
 * @package analytics
 * @author ColdTrick IT Solutions
-* @copyright ColdTrick IT Solutions 2009
 * @link http://www.coldtrick.com/
 */
 
@@ -25,7 +24,7 @@ function analytics_init() {
 	elgg_extend_view("page/elements/head", "analytics/metatags", 999);
 	
 	// extend the page footer
-	elgg_extend_view("footer/analytics", "analytics/footer", 999);
+	elgg_extend_view("page/elements/foot", "analytics/footer", 999);
 	
 	// register page handler
 	elgg_register_page_handler("analytics", "analytics_page_handler");
