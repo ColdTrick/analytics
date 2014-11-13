@@ -3,11 +3,11 @@
 // do we have the plugin configured correctly
 if (elgg_get_plugin_setting("analyticsSiteID", "analytics")) {
 
-	$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
-	$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
+	$trackActions = analytics_google_track_actions_enabled();
+	$trackEvents = analytics_google_track_events_enabled();
 
 	// do we track actions/events
-	if ($trackActions == "yes" || $trackEvents == "yes") {
+	if ($trackActions || $trackEvents) {
 ?>
 <script type="text/javascript" id="analytics_ajax_result">
 
