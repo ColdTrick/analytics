@@ -1,5 +1,5 @@
 Analytics
-================
+=========
 Track the usage of your site by Google Analytics and/or Piwik
 
 **Release 1.3**
