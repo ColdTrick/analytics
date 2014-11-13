@@ -1,6 +1,6 @@
 = Version history =
 
-x.x:
+2.2 (2014-11-13):
 
 - applied coding standards
 - added: option for Google Analytics to anonymize lP address
