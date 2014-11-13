@@ -2,14 +2,16 @@
 
 // Google Analytics tracking
 $trackID = elgg_get_plugin_setting("analyticsSiteID", "analytics");
+if (empty($trackID)) {
+	return;
+}
 
-if (!empty($trackID)) {
-	$domain = elgg_get_plugin_setting("analyticsDomain", "analytics");
-	$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
-	$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
-	$flagAdmins = elgg_get_plugin_setting("flagAdmins", "analytics");
-	$anonymizelp = elgg_get_plugin_setting("anonymizelp", "analytics");
-	
+$domain = elgg_get_plugin_setting("analyticsDomain", "analytics");
+$trackActions = elgg_get_plugin_setting("trackActions", "analytics");
+$trackEvents = elgg_get_plugin_setting("trackEvents", "analytics");
+$flagAdmins = elgg_get_plugin_setting("flagAdmins", "analytics");
+$anonymizelp = elgg_get_plugin_setting("anonymizelp", "analytics");
+
 ?>
 <!-- Google Analytics -->
 <script type="text/javascript">
@@ -69,38 +71,3 @@ if (!empty($trackID)) {
 
 </script>
 <!-- End Google Analytics -->
-<?php
-}
-// end Google Analytics
-
-// Piwik tracking
-$piwik_url = elgg_get_plugin_setting("piwik_url", "analytics");
-$piwik_site_id = (int) elgg_get_plugin_setting("piwik_site_id", "analytics");
-
-if (!empty($piwik_url) && !empty($piwik_site_id)) {
-	// validate piwik url
-	if (((stripos($piwik_url, "https://") === 0) || (stripos($piwik_url, "http://") === 0)) && (substr($piwik_url, -1, 1) === "/")) {
-		?>
-<!-- Piwik -->
-<script type="text/javascript">
-	var _paq = _paq || [];
-
-	(function() {
-		var u = "<?php echo $piwik_url; ?>";
-		_paq.push(['setSiteId', <?php echo $piwik_site_id; ?>]);
-		_paq.push(['setTrackerUrl', u + 'piwik.php']);
-		_paq.push(['trackPageView']);
-		_paq.push(['enableLinkTracking']);
-
-		var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-		g.type = 'text/javascript';
-		g.defer = true;
-		g.async = true;
-		g.src = u + 'piwik.js';
-		s.parentNode.insertBefore(g,s);
-	})();
- </script>
-<!-- End Piwik Code -->
-		<?php
-	}
-}

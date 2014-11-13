@@ -21,7 +21,8 @@ elgg_register_event_handler("init", "system", "analytics_init");
  */
 function analytics_init() {
 	// load Google Analytics JS
-	elgg_extend_view("page/elements/head", "analytics/metatags", 999);
+	elgg_extend_view("page/elements/head", "analytics/head/google", 999);
+	elgg_extend_view("page/elements/head", "analytics/head/piwik", 999);
 	
 	// extend the page footer
 	elgg_extend_view("page/elements/foot", "analytics/footer", 999);
