@@ -40,7 +40,7 @@ $google .= "</div>";
 $google .= "<div class='mbs'>";
 $google .= elgg_echo("analytics:settings:domain");
 $google .= elgg_view("input/text", array("name" => "params[analyticsDomain]", "value" => $domain, "id" => "analyticsDomain"));
-	
+
 if ($sample) {
 	$google .= "<div class='elgg-subtext'>" . elgg_echo("analytics:settings:domain:sample", array($host)) . "</div>";
 }
@@ -48,11 +48,11 @@ $google .= "</div>";
 
 $google .= "<div class='mbs'>";
 $google .= elgg_echo("analytics:settings:track_actions");
-$google .= elgg_view("input/dropdown", array("name" => "params[trackActions]", "options_values" => $noyes_options, "value" => $plugin->trackEvents, "class" => "mls"));
+$google .= elgg_view("input/dropdown", array("name" => "params[trackActions]", "options_values" => $noyes_options, "value" => $plugin->trackActions, "class" => "mls"));
 $google .= "<br />";
 
 $google .= elgg_echo("analytics:settings:track_events");
-$google .= elgg_view("input/dropdown", array("name" => "params[trackEvents]", "options_values" => $noyes_options, "value" => $plugin->trackActions, "class" => "mls"));
+$google .= elgg_view("input/dropdown", array("name" => "params[trackEvents]", "options_values" => $noyes_options, "value" => $plugin->trackEvents, "class" => "mls"));
 $google .= "<div>" . elgg_echo("analytics:settings:track_events:warning") . "</div>";
 $google .= "</div>";
 
@@ -83,4 +83,3 @@ $piwik .= elgg_view("input/text", array("name" => "params[piwik_site_id]", "valu
 $piwik .= "</div>";
 
 echo elgg_view_module("inline", elgg_echo("analytics:settings:piwik"), $piwik);
-	
