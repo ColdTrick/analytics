@@ -14,8 +14,9 @@ $domain = $plugin->analyticsDomain;
 
 $host = $_SERVER['HTTP_HOST'];
 $hostArray = explode('.', $host);
+$host_count = count($hostArray);
 $host = '';
-for ($i = 1; $i < count($hostArray); $i++) {
+for ($i = 1; $i < $host_count; $i++) {
 	$host .= '.' . $hostArray[$i];
 }
 
