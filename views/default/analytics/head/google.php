@@ -8,7 +8,7 @@ if (empty($trackID)) {
 
 $domain = elgg_get_plugin_setting('analyticsDomain', 'analytics');
 $flagAdmins = elgg_get_plugin_setting('flagAdmins', 'analytics');
-$anonymizelp = elgg_get_plugin_setting('anonymizelp', 'analytics');
+$anonymizelp = elgg_get_plugin_setting('anonymizeIp', 'analytics');
 
 if (empty($domain)) {
 	$domain = 'auto';
