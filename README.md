@@ -8,6 +8,10 @@ Analytics
 
 Track the usage of your site by Google Analytics and/or Piwik
 
+**Known issues**
+
+- Action tracking doesn't work in Elgg 1.10+
+
 Contents
 --------
 
@@ -17,28 +21,30 @@ Contents
 4. Tracking of events
 5. Flag admins
 
-
 1. Credits
 ----------
 **Version 1.3**
 
-Funding
-- Oxfam Novib for [Doenersnet][doenersnet]
-
-Testing and feedback
-- Jules Stuifbergen, Web Analytics Expert [http://forwardslash.nl/elgg][jules]
+- Funding
+	- Oxfam Novib for [Doenersnet][doenersnet]
+- Testing and feedback
+	- Jules Stuifbergen, Web Analytics Expert [http://forwardslash.nl/elgg][jules]
 
 2. Important updates
 --------------------
 
 **Version 1.3**
 
-It is possible to track Actions and Events of the Elgg system.
-Tracking can be enabled in the plugin settings
+- It is possible to track Actions and Events of the Elgg system.
+- Tracking can be enabled in the plugin settings
 
 **Version 2.1**
 
-The plugin name changed to Analytics, as we now support both [Google Analytics][google] and [Piwik][piwik] analytics tracking.
+- The plugin name changed to Analytics, as we now support both [Google Analytics][google] and [Piwik][piwik] analytics tracking.
+
+**Version 3.1**
+
+- Updated to the [Google Universal Analytics][google] tracking.
 
 3. Tracking of Actions
 ----------------------
