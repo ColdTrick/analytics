@@ -1,7 +1,14 @@
 Version history
 ===============
 
-3.0.1:
+3.1 (2015-12-18):
+
+- added: Composer support
+- changed: Google Analytics tracking using Universal Analytics
+- fixed: using wrong plugin setting name for anonymize IP
+- chore: code refactoring for coding style and performance
+
+3.0.1 (2015-07-08):
 
 - fixed: mixed up plugin setting values for event and action tracking
 
