@@ -150,13 +150,17 @@ function analytics_google_get_tracked_events() {
 	}
 	
 	foreach ($_SESSION['analytics']['events'] as $event) {
-		$output = "_gaq.push(['_trackEvent', '{$event['category']}', '{$event['action']}'";
-			
+		
+		$event_data = [
+			'eventCategory' => $event['category'],
+			'eventAction' => $event['action'],
+		];
 		if (!empty($event['label'])) {
-			$output .= ", '" . str_replace("'", '', $event['label']) . "'";
+			$event_data['eventLabel'] = $event['label'];
 		}
-			
-		$output .= ']);';
+		
+		
+		$output .= "ga('send', 'event', " . json_encode($event_data) . ");";
 	}
 
 	$_SESSION['analytics']['events'] = [];
@@ -182,9 +186,9 @@ function analytics_google_get_tracked_actions() {
 	
 	foreach ($_SESSION['analytics']['actions'] as $action => $result) {
 		if ($result) {
-			$output .= "_gaq.push(['_trackPageview', '/action/{$action}/succes']);";
+			$output .= "ga('send', 'pageview', '/action/{$action}/succes');";
 		} else {
-			$output .= "_gaq.push(['_trackPageview', '/action/{$action}/error']);";
+			$output .= "ga('send', 'pageview', '/action/{$action}/error');";
 		}
 	}
 	
