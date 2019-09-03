@@ -4,5 +4,9 @@
  *
  */
 
+use ColdTrick\Analytics\TrackingService;
+
+$tracker = TrackingService::instance();
+
 echo analytics_google_get_tracked_actions();
-echo analytics_google_get_tracked_events();
+echo $tracker->getEvents();

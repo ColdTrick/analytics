@@ -33,9 +33,11 @@ class Bootstrap extends DefaultPluginBootstrap {
 	protected function registerEvents() {
 		$events = $this->elgg()->events;
 		
-		$events->registerHandler('all', 'group', __NAMESPACE__ . '\Tracker::events');
-		$events->registerHandler('all', 'object', __NAMESPACE__ . '\Tracker::events');
-		$events->registerHandler('all', 'user', __NAMESPACE__ . '\Tracker::events');
+		$tracker = TrackingService::instance();
+		
+		$events->registerHandler('all', 'group', [$tracker, 'trackEvent']);
+		$events->registerHandler('all', 'object', [$tracker, 'trackEvent']);
+		$events->registerHandler('all', 'user', [$tracker, 'trackEvent']);
 	}
 	
 	/**

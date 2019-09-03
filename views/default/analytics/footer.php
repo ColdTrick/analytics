@@ -6,7 +6,7 @@ if (!elgg_get_plugin_setting('analyticsSiteID', 'analytics')) {
 }
 
 $trackActions = analytics_google_track_actions_enabled();
-$trackEvents = analytics_google_track_events_enabled();
+$trackEvents = elgg_get_plugin_setting('trackEvents', 'analytics') === 'yes';
 
 // do we track actions/events
 if (!$trackActions && !$trackEvents) {

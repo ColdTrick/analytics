@@ -1,5 +1,7 @@
 <?php
 
+use ColdTrick\Analytics\TrackingService;
+
 // Google Analytics tracking
 $trackID = elgg_get_plugin_setting('analyticsSiteID', 'analytics');
 if (empty($trackID)) {
@@ -13,6 +15,8 @@ $anonymizelp = elgg_get_plugin_setting('anonymizeIp', 'analytics');
 if (empty($domain)) {
 	$domain = 'auto';
 }
+
+$tracker = TrackingService::instance();
 
 ?>
 <!-- Google Analytics -->
@@ -43,7 +47,7 @@ if (empty($domain)) {
 
 	<?php
 	echo analytics_google_get_tracked_actions();
-	echo analytics_google_get_tracked_events();
+	echo $tracker->getEvents();
 	?>
 </script>
 <!-- End Google Analytics -->
