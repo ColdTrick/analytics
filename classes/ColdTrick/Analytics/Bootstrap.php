@@ -3,6 +3,7 @@
 namespace ColdTrick\Analytics;
 
 use Elgg\DefaultPluginBootstrap;
+use Elgg\Services\AjaxResponse;
 
 class Bootstrap extends DefaultPluginBootstrap {
 	
@@ -11,15 +12,13 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 * @see \Elgg\DefaultPluginBootstrap::init()
 	 */
 	public function init() {
-		
 		// load Google Analytics JS
 		elgg_extend_view('page/elements/head', 'analytics/head/google', 999);
 		
-		// extend the page footer
-		elgg_extend_view('page/elements/foot', 'analytics/footer', 999);
-		
-		// register page handler
-		elgg_register_page_handler('analytics', __NAMESPACE__ . '\PageHandler::analytics');
+		$tracker = TrackingService::instance();
+		if (!empty($this->plugin()->getSetting('analyticsSiteID')) && $tracker->actionTrackingEnabled() || $tracker->eventTrackingEnabled()) {
+			elgg_require_js('analytics/tracking');
+		}
 		
 		$this->registerEvents();
 		$this->registerHooks();
@@ -48,7 +47,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 		$hooks = $this->elgg()->hooks;
 		$tracker = TrackingService::instance();
 		
-		$hooks->registerHandler('public_pages', 'walled_garden', __NAMESPACE__ . '\Site::publicPages');
+		$hooks->registerHandler(AjaxResponse::RESPONSE_HOOK, 'all', AjaxResponseHandler::class);
 		$hooks->registerHandler('response', 'all', [$tracker, 'trackAction']);
 	}
 }

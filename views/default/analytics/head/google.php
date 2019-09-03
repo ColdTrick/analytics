@@ -46,8 +46,8 @@ $tracker = TrackingService::instance();
 	ga('send', 'pageview');
 
 	<?php
-	echo $tracker->getActions();
-	echo $tracker->getEvents();
+	echo $tracker->getFormattedActions();
+	echo $tracker->getFormattedEvents();
 	?>
 </script>
 <!-- End Google Analytics -->

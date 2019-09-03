@@ -44,7 +44,7 @@ class TrackingService {
 	 *
 	 * @return bool
 	 */
-	protected function eventTrackingEnabled() {
+	public function eventTrackingEnabled() {
 		return $this->plugin->getSetting('trackEvents') === 'yes';
 	}
 	
@@ -53,7 +53,7 @@ class TrackingService {
 	 *
 	 * @return bool
 	 */
-	protected function actionTrackingEnabled() {
+	public function actionTrackingEnabled() {
 		return $this->plugin->getSetting('trackActions') === 'yes';
 	}
 	
@@ -153,35 +153,49 @@ class TrackingService {
 	/**
 	 * Get the tracked actions for use in Google Analytics
 	 *
-	 * @return string
+	 * @return false|array
 	 */
 	public function getActions() {
 		if (!$this->eventTrackingEnabled()) {
-			return '';
+			return false;
 		}
 		
 		$analytics = $this->session->get('analytics', []);
 		if (empty($analytics)) {
-			return '';
+			return false;
 		}
 		
 		$actions = elgg_extract('actions', $analytics, []);
 		if (empty($actions)) {
-			return '';
-		}
-		
-		$output = '';
-		foreach ($actions as $action => $result) {
-			if ($result) {
-				$output .= "ga('send', 'pageview', '/action/{$action}/succes');" . PHP_EOL;
-			} else {
-				$output .= "ga('send', 'pageview', '/action/{$action}/error');" . PHP_EOL;
-			}
+			return false;
 		}
 		
 		$analytics['actions'] = [];
 		
 		$this->session->set('analytics', $analytics);
+		
+		return $actions;
+	}
+	
+	/**
+	 * Get prepared javascript code for action tracking
+	 *
+	 * @return string
+	 */
+	public function getFormattedActions() {
+		$actions = $this->getActions();
+		if (empty($actions)) {
+			return '';
+		}
+		
+		$output = '';
+		foreach ($actions as $action => $success) {
+			if ($success) {
+				$output .= "ga('send', 'pageview', '/action/{$action}/success');" . PHP_EOL;
+			} else {
+				$output .= "ga('send', 'pageview', '/action/{$action}/error');" . PHP_EOL;
+			}
+		}
 		
 		return $output;
 	}
@@ -189,40 +203,55 @@ class TrackingService {
 	/**
 	 * Get the tracked events for use in Google Analytics
 	 *
-	 * @return string
+	 * @return false|array
 	 */
 	public function getEvents() {
 		
 		if (!$this->eventTrackingEnabled()) {
-			return '';
+			return false;
 		}
 		
 		$analytics = $this->session->get('analytics', []);
 		if (empty($analytics)) {
-			return '';
+			return false;
 		}
 		
 		$events = elgg_extract('events', $analytics, []);
+		if (empty($events)) {
+			return false;
+		}
+		
+		$analytics['events'] = [];
+		
+		$this->session->set('analytics', $analytics);
+		
+		return $events;
+	}
+	
+	/**
+	 * Get prepared javascript code for event tracking
+	 *
+	 * @return string
+	 */
+	public function getFormattedEvents() {
+		$events = $this->getEvents();
 		if (empty($events)) {
 			return '';
 		}
 		
 		$output = '';
 		foreach ($events as $event) {
-			$event_data = [
+			$data = [
 				'eventCategory' => $event['category'],
 				'eventAction' => $event['action'],
 			];
+			
 			if (!empty($event['label'])) {
-				$event_data['eventLabel'] = $event['label'];
+				$data['eventLabel'] = $event['label'];
 			}
 			
-			$output .= "ga('send', 'event', " . json_encode($event_data) . ");" . PHP_EOL;
+			$output .= "ga('send', 'event', " . json_encode($data) . ");" . PHP_EOL;
 		}
-		
-		$analytics['events'] = [];
-		
-		$this->session->set('analytics', $analytics);
 		
 		return $output;
 	}
