@@ -144,7 +144,7 @@ class TrackingService {
 		if (!empty($params['label'])) {
 			$t_event['label'] = $params['label'];
 		}
-		error_log(var_export($t_event, true));
+		
 		$analytics['events'][] = $t_event;
 		
 		$this->session->set('analytics', $analytics);
