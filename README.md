@@ -1,6 +1,7 @@
 Analytics
 =========
 
+![Elgg 3.1](https://img.shields.io/badge/Elgg-3.1-green.svg)
 [![Build Status](https://scrutinizer-ci.com/g/ColdTrick/analytics/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/analytics/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ColdTrick/analytics/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/analytics/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/analytics/v/stable.svg)](https://packagist.org/packages/coldtrick/analytics)
