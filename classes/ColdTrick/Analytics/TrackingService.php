@@ -3,6 +3,8 @@
 namespace ColdTrick\Analytics;
 
 use Elgg\Di\ServiceFacade;
+use Elgg\Http\ResponseBuilder;
+use Elgg\Http\ErrorResponse;
 
 class TrackingService {
 	
@@ -44,6 +46,63 @@ class TrackingService {
 	 */
 	protected function eventTrackingEnabled() {
 		return $this->plugin->getSetting('trackEvents') === 'yes';
+	}
+	
+	/**
+	 * Is action tracking enabled
+	 *
+	 * @return bool
+	 */
+	protected function actionTrackingEnabled() {
+		return $this->plugin->getSetting('trackActions') === 'yes';
+	}
+	
+	/**
+	 * Track actions
+	 *
+	 * @param \Elgg\Hook $hook 'response', 'all'
+	 *
+	 * @return void
+	 */
+	public function trackAction(\Elgg\Hook $hook) {
+		
+		if (!$this->actionTrackingEnabled()) {
+			return;
+		}
+		
+		$path = $hook->getType();
+		if (strpos($path, 'action:') !== 0) {
+			// not an action
+			return;
+		}
+		
+		$response = $hook->getValue();
+		if (!$response instanceof ResponseBuilder) {
+			return;
+		}
+		
+		$action = substr($path, 7);
+		
+		$params = [
+			'action' => $action,
+		];
+		if (!elgg_trigger_plugin_hook('track_action', 'analytics', $params, true)) {
+			// don't track this action
+			return;
+		}
+		
+		$success = true;
+		if ($response instanceof ErrorResponse) {
+			$success = false;
+		}
+		
+		
+		$analytics = $this->session->get('analytics', []);
+		$analytics['actions'] = elgg_extract('actions', $analytics, []);
+		
+		$analytics['actions'][$action] = $success;
+		
+		$this->session->set('analytics', $analytics);
 	}
 	
 	/**
@@ -92,6 +151,42 @@ class TrackingService {
 	}
 	
 	/**
+	 * Get the tracked actions for use in Google Analytics
+	 *
+	 * @return string
+	 */
+	public function getActions() {
+		if (!$this->eventTrackingEnabled()) {
+			return '';
+		}
+		
+		$analytics = $this->session->get('analytics', []);
+		if (empty($analytics)) {
+			return '';
+		}
+		
+		$actions = elgg_extract('actions', $analytics, []);
+		if (empty($actions)) {
+			return '';
+		}
+		
+		$output = '';
+		foreach ($actions as $action => $result) {
+			if ($result) {
+				$output .= "ga('send', 'pageview', '/action/{$action}/succes');" . PHP_EOL;
+			} else {
+				$output .= "ga('send', 'pageview', '/action/{$action}/error');" . PHP_EOL;
+			}
+		}
+		
+		$analytics['actions'] = [];
+		
+		$this->session->set('analytics', $analytics);
+		
+		return $output;
+	}
+	
+	/**
 	 * Get the tracked events for use in Google Analytics
 	 *
 	 * @return string
@@ -109,7 +204,7 @@ class TrackingService {
 		
 		$events = elgg_extract('events', $analytics, []);
 		if (empty($events)) {
-			return;
+			return '';
 		}
 		
 		$output = '';

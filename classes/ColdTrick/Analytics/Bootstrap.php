@@ -32,7 +32,6 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 */
 	protected function registerEvents() {
 		$events = $this->elgg()->events;
-		
 		$tracker = TrackingService::instance();
 		
 		$events->registerHandler('all', 'group', [$tracker, 'trackEvent']);
@@ -47,8 +46,9 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 */
 	protected function registerHooks() {
 		$hooks = $this->elgg()->hooks;
+		$tracker = TrackingService::instance();
 		
-		$hooks->registerHandler('action', 'all', __NAMESPACE__ . '\Tracker::actions');
 		$hooks->registerHandler('public_pages', 'walled_garden', __NAMESPACE__ . '\Site::publicPages');
+		$hooks->registerHandler('response', 'all', [$tracker, 'trackAction']);
 	}
 }
