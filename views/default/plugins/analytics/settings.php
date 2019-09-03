@@ -1,18 +1,16 @@
 <?php
 /**
 * Analytics settings configuration.
-*
-* @package analytics
-* @author ColdTrick IT Solutions
-* @copyright ColdTrick IT Solutions 2009
-* @link http://www.coldtrick.com/
 */
 
+/* @var $plugin \ElggPlugin */
 $plugin = elgg_extract('entity', $vars);
 
 $domain = $plugin->analyticsDomain;
 
-$host = $_SERVER['HTTP_HOST'];
+$site = elgg_get_site_entity();
+
+$host = $site->getDomain();
 $hostArray = explode('.', $host);
 $host_count = count($hostArray);
 $host = '';
@@ -96,25 +94,3 @@ $google .= elgg_view('input/select', [
 $google .= '</div>';
 
 echo elgg_view_module('inline', elgg_echo('analytics:settings:google'), $google);
-
-// Piwik
-$piwik = elgg_format_element('div', ['class' => 'mbs'], elgg_echo('analytics:settings:piwik:description'));
-
-$piwik .= '<div class="mbs">';
-$piwik .= elgg_echo('analytics:settings:piwik:url');
-$piwik .= elgg_view('input/url', [
-	'name' => 'params[piwik_url]',
-	'value' => $plugin->piwik_url,
-]);
-$piwik .= elgg_format_element('div', ['class' => 'elgg-subtext'], elgg_echo('analytics:settings:piwik:url:description'));
-$piwik .= '</div>';
-
-$piwik .= '<div class="mbs">';
-$piwik .= elgg_echo('analytics:settings:piwik:site_id');
-$piwik .= elgg_view('input/text', [
-	'name' => 'params[piwik_site_id]',
-	'value' => $plugin->piwik_site_id,
-]);
-$piwik .= '</div>';
-
-echo elgg_view_module('inline', elgg_echo('analytics:settings:piwik'), $piwik);

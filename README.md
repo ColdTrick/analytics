@@ -7,7 +7,7 @@ Analytics
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/analytics/v/stable.svg)](https://packagist.org/packages/coldtrick/analytics)
 [![License](https://poser.pugx.org/coldtrick/analytics/license.svg)](https://packagist.org/packages/coldtrick/analytics)
 
-Track the usage of your site by Google Analytics and/or Piwik
+Track the usage of your site by Google Analytics
 
 Contents
 --------
@@ -42,6 +42,10 @@ Contents
 **Version 3.1**
 
 - Updated to the [Google Universal Analytics][google] tracking.
+
+** Version 4.0**
+
+- Removed Piwik Support
 
 3. Tracking of Actions
 ----------------------
