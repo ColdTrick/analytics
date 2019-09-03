@@ -6,8 +6,6 @@
 /* @var $plugin \ElggPlugin */
 $plugin = elgg_extract('entity', $vars);
 
-$domain = $plugin->analyticsDomain;
-
 $site = elgg_get_site_entity();
 
 $host = $site->getDomain();
@@ -19,78 +17,70 @@ for ($i = 1; $i < $host_count; $i++) {
 }
 
 $sample = false;
-if ($domain != $host) {
+if ($plugin->analyticsDomain !== $host) {
 	$sample = true;
 }
 
-$noyes_options = [
-	'no' => elgg_echo('option:no'),
-	'yes' => elgg_echo('option:yes'),
-];
-
 // Google Analytics
-$google = elgg_format_element('div', ['class' => 'mbs'], elgg_echo('analytics:settings:google:description'));
+$google = elgg_view('output/longtext', [
+	'value' => elgg_echo('analytics:settings:google:description'),
+]);
 
-$google .= '<div class="mbs">';
-$google .= elgg_echo('analytics:settings:trackid');
-$google .= elgg_view('input/text', [
+$google .= elgg_view_field([
+	'#type' => 'text',
+	'#label' => elgg_echo('analytics:settings:trackid'),
 	'name' => 'params[analyticsSiteID]',
 	'value' => $plugin->analyticsSiteID,
 	'maxlength' => '15',
 ]);
-$google .= '</div>';
 
-$google .= '<div class="mbs">';
-$google .= elgg_echo('analytics:settings:domain');
-$google .= elgg_view('input/text', [
+$google .= elgg_view_field([
+	'#type' => 'text',
+	'#label' => elgg_echo('analytics:settings:domain'),
+	'#help' => $sample ? elgg_echo('analytics:settings:domain:sample', [$host]) : null,
 	'name' => 'params[analyticsDomain]',
-	'value' => $domain,
-	'id' => 'analyticsDomain',
+	'value' => $plugin->analyticsDomain,
 ]);
 
-if ($sample) {
-	$google .= elgg_format_element('div', ['class' => 'elgg-subtext'], elgg_echo('analytics:settings:domain:sample', [$host]));
-}
-$google .= '</div>';
-
-$google .= '<div class="mbs">';
-$google .= elgg_echo('analytics:settings:track_actions');
-$google .= elgg_view('input/select', [
+$google .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('analytics:settings:track_actions'),
 	'name' => 'params[trackActions]',
-	'options_values' => $noyes_options,
-	'value' => $plugin->trackActions,
-	'class' => 'mls',
+	'default' => 'no',
+	'value' => 'yes',
+	'checked' => $plugin->trackActions === 'yes',
+	'switch' => true,
 ]);
-$google .= '<br />';
 
-$google .= elgg_echo('analytics:settings:track_events');
-$google .= elgg_view('input/select', [
+$google .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('analytics:settings:track_events'),
+	'#help' => elgg_echo('analytics:settings:track_events:warning'),
 	'name' => 'params[trackEvents]',
-	'options_values' => $noyes_options,
-	'value' => $plugin->trackEvents,
-	'class' => 'mls',
+	'default' => 'no',
+	'value' => 'yes',
+	'checked' => $plugin->trackEvents === 'yes',
+	'switch' => true,
 ]);
-$google .= elgg_format_element('div', [], elgg_echo('analytics:settings:track_events:warning'));
-$google .= '</div>';
 
-$google .= '<div class="mbs">';
-$google .= elgg_echo('analytics:settings:flag_administrators');
-$google .= elgg_view('input/select', [
+$google .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('analytics:settings:flag_administrators'),
 	'name' => 'params[flagAdmins]',
-	'options_values' => $noyes_options,
-	'value' => $plugin->flagAdmins,
-	'class' => 'mls',
+	'default' => 'no',
+	'value' => 'yes',
+	'checked' => $plugin->flagAdmins === 'yes',
+	'switch' => true,
 ]);
-$google .= '</div>';
 
-$google .= '<div class="mbs">';
-$google .= elgg_echo('analytics:settings:anonymize_ip');
-$google .= elgg_view('input/select', [
+$google .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('analytics:settings:anonymize_ip'),
 	'name' => 'params[anonymizeIp]',
-	'options_values' => $noyes_options,
-	'value' => $plugin->anonymizeIp,
-	'class' => 'mls',
+	'default' => 'no',
+	'value' => 'yes',
+	'checked' => $plugin->anonymizeIp === 'yes',
+	'switch' => true,
 ]);
-$google .= '</div>';
 
-echo elgg_view_module('inline', elgg_echo('analytics:settings:google'), $google);
+echo elgg_view_module('info', elgg_echo('analytics:settings:google'), $google);
