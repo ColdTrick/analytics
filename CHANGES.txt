@@ -1,6 +1,15 @@
 Version history
 ===============
 
+4.0 (2024-03-06):
+
+- added: translation into Spanish
+- changed: ajax based tracking uses new Elgg ajax features
+- changed: event tracking moved to service
+- changed: increased minimal Elgg version to 3.1
+- changed: moved action tracking into a service
+- removed: piwik support
+
 3.1.1 (2016-11-22):
 
 - fixed: ajax_success unavailable in walled garden mode
