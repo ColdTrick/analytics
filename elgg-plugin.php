@@ -1,13 +1,15 @@
 <?php
 
-use ColdTrick\Analytics\Bootstrap;
-
 return [
-	'bootstrap' => Bootstrap::class,
+	'plugin' => [
+		'version' => '4.0',
+	],
 	'settings' => [
-		'trackActions' => 'no',
-		'trackEvents' => 'no',
-		'flagAdmins' => 'no',
-		'anonymizeIp' => 'no',
+		'analyticsDebug' => 0,
+	],
+	'view_extensions' => [
+		'page/elements/head' => [
+			'analytics/head/google' => ['priority' => 1],
+		],
 	],
 ];

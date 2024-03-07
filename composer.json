@@ -1,6 +1,6 @@
 {
 	"name": "coldtrick/analytics",
-	"description": "Adds analytics tracking code (by Google or Piwik) to all Elgg pages",
+	"description": "Adds analytics tracking code (by Google) to all Elgg pages",
 	"type": "elgg-plugin",
 	"keywords": ["elgg", "plugin", "analytics"],
 	"license": "GPL-2.0-only",
@@ -8,14 +8,7 @@
 		"source": "https://github.com/ColdTrick/analytics",
 		"issues": "https://github.com/ColdTrick/analytics/issues"
 	},
-	"require": {
-		"composer/installers": "^1.0.8"
-	},
-	"require-dev": {
-		"coldtrick/sniffs": "dev-master",
-		"coldtrick/releases": "dev-master"
-	},
 	"conflict": {
-		"elgg/elgg": "<3.1"
+		"elgg/elgg": "<5.1"
 	}
 }
