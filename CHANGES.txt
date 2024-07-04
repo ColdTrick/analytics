@@ -1,6 +1,10 @@
 Version history
 ===============
 
+5.0 (2024-07-04):
+
+- changed: updated for Elgg 5.1 and reset to basic Google Analytics 4
+
 4.0 (2024-03-06):
 
 - added: translation into Spanish

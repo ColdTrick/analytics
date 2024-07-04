@@ -2,7 +2,7 @@
 
 return [
 	'plugin' => [
-		'version' => '4.0',
+		'version' => '5.0',
 	],
 	'settings' => [
 		'analyticsDebug' => 0,
